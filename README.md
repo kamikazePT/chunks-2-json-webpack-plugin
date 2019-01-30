@@ -4,7 +4,7 @@ Plugin for webpack 4, that outputs build files to JSON
 ## Instalation 
 
 ```
-npm i --save-dev kamikazept-chunks-2-json-webpack-plugin
+yarn add --dev kamikazept-chunks-2-json-webpack-plugin
 ```
 
 ## Use case
@@ -24,15 +24,22 @@ allow other apps to understand the structure of the build.
 
 const Chunks2JsonPlugin = require('kamikazept-chunks-2-json-webpack-plugin');
 const path = require('path');
+const projectPath = process.cwd();
+
+const scriptPath = path.resolve(projectPath, 'js');
+const stylePath = path.resolve(projectPath, 'css')
 
 module.exports = {
   entry: './path/to/my/entry/file.js',
   output: {
-    filename: 'my-first-webpack.bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath : '/dist/'
+    filename: '[chunkhash].bundle.js',
+    path: scriptPath,
+    publicPath : '/js/'
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: path.join(path.relative(scriptPath, stylePath), '[chunkhash].css'))
+    }),
     new Chunks2JsonPlugin()
   ]
 };
@@ -63,7 +70,12 @@ module.exports = {
 | chunkGroupName | `function(filename, chunk definition object) => string`, generate chunk group name. Group by file extension (or `ext.map`) by default. |
 | outputDir | Output folder name. If the folder does not exist, we'll try to create it. Current working directory by default.  |
 | filename | Output file name. `build-manifest.json` by default. |
+| isProduction | If true it will minify json, otherwise it will pretty print it. |
 
 ## Questions? 
 
 Feel free to open an issue. 
+
+## Notes
+
+Will make PR to original repository
