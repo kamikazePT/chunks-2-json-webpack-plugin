@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kamikazePT/Chunks2JsonPlugin.git"
+    "url": "git+https://github.com/kamikazePT/chunks-2-json-webpack-plugin.git"
   },
   "keywords": [
     "webpack4",
@@ -21,9 +21,9 @@
   "author": "Afonso Santos aka kamikazePT",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kamikazePT/Chunks2JsonPlugin/issues"
+    "url": "https://github.com/kamikazePT/chunks-2-json-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/kamikazePT/Chunks2JsonPlugin#readme",
+  "homepage": "https://github.com/kamikazePT/chunks-2-json-webpack-plugin#readme",
   "dependencies": {
     "fs": "^0.0.1-security",
     "lodash.isnil": "^4.0.0",
