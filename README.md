@@ -4,7 +4,7 @@ Plugin for webpack 4, that outputs build files to JSON
 ## Instalation 
 
 ```
-npm i --save-dev chunks-2-json-webpack-plugin
+npm i --save-dev kamikazept-chunks-2-json-webpack-plugin
 ```
 
 ## Use case
@@ -22,17 +22,18 @@ allow other apps to understand the structure of the build.
 
 ```javascript
 
-const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
+const Chunks2JsonPlugin = require('kamikazept-chunks-2-json-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   entry: './path/to/my/entry/file.js',
   output: {
     filename: 'my-first-webpack.bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath : '/dist/'
   },
   plugins: [
-    new Chunks2JsonPlugin({ outputDir: 'dist/', filename: 'my-app.json' })
+    new Chunks2JsonPlugin()
   ]
 };
 
@@ -43,25 +44,25 @@ module.exports = {
 ```JSON
 {
   "chunk-vendors": {
-    "js": "/js/chunk-vendors.fc40696c.js",
-    "jsMap": "/js/chunk-vendors.fc40696c.js.map"
+    "js": ["/js/chunk-vendors.fc40696c.js"],
+    "js.map": ["/js/chunk-vendors.fc40696c.js.map"]
   },
   "app": {
-    "css": "/css/app.eb829ccc.css",
-    "js": "/js/app.dd31cdcb.js",
-    "jsMap": "/js/app.dd31cdcb.js.map"
+    "css": ["/css/app.eb829ccc.css"],
+    "js": ["/js/app.dd31cdcb.js"],
+    "js.map": ["/js/app.dd31cdcb.js.map"]
   }
 }
 ```
 
 ## Options
 
-There are 2 input options available 
-
 | Option | Description |
 | ------------- |-------------|
-| outputDir | Folder in which to output the JSON file. If the folder does not exist, we'll try to create it |
-| filename | Name of the outputed JSON file |
+| excludeFile | `RegExp` or `function(filename, chunk definition object) => bool`. Exclude dynamic imported chunks and HMR chunks (file names ending with `.hot-update.js`) by default . |
+| chunkGroupName | `function(filename, chunk definition object) => string`, generate chunk group name. Group by file extension (or `ext.map`) by default. |
+| outputDir | Output folder name. If the folder does not exist, we'll try to create it. Current working directory by default.  |
+| filename | Output file name. `build-manifest.json` by default. |
 
 ## Questions? 
 

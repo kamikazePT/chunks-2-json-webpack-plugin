@@ -1,6 +1,6 @@
 {
-  "name": "chunks-2-json-webpack-plugin",
-  "version": "0.0.3",
+  "name": "kamikazept-chunks-2-json-webpack-plugin",
+  "version": "1.0.0",
   "description": "Plugin for webpack 4, that outputs build files to JSON",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/homeday-de/Chunks2JsonPlugin.git"
+    "url": "git+https://github.com/kamikazePT/Chunks2JsonPlugin.git"
   },
   "keywords": [
     "webpack4",
@@ -18,10 +18,15 @@
     "file",
     "list"
   ],
-  "author": "Sinisa Grubor",
-  "license": "ISC",
+  "author": "Afonso Santos aka kamikazePT",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/homeday-de/Chunks2JsonPlugin/issues"
+    "url": "https://github.com/kamikazePT/Chunks2JsonPlugin/issues"
   },
-  "homepage": "https://github.com/homeday-de/Chunks2JsonPlugin#readme"
+  "homepage": "https://github.com/kamikazePT/Chunks2JsonPlugin#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "lodash.isnil": "^4.0.0",
+    "path": "^0.12.7"
+  }
 }
