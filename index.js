@@ -50,19 +50,13 @@ class Chunks2JsonWebpackPlugin {
   }
 
   saveJson() {
-    const projectRoot = process.cwd();
-    // try to create outputDir folder if it is within project root
-    if (this.options.outputDir.startsWith(projectRoot) || !this.options.outputDir.startsWith(path.sep)) {
-      let pathStep = projectRoot;
-      this.options.outputDir.replace(path.sep, '').replace(projectRoot, '').split(path.sep).forEach((folder) => {
-        pathStep = path.join(pathStep, folder);
-        try {
-            fs.mkdirSync(pathStep);
-        } catch (e) {
-            // we don't care if it already exists, just continue...
-        }
-      });
+    try {
+        fs.mkdirSync(this.options.outputDir, { recursive: true });
+    } catch (e) {
+      console.log(e);
+      // we don't care if it already exists, just continue...
     }
+
     const file = path.resolve(this.options.outputDir, this.options.filename + '.json');
     const blob = JSON.stringify(this.result, null, this.options.isProduction ? null : 2);
     
